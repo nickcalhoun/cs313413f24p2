@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,9 +43,9 @@ public class TestList {
   public void testSizeNonEmpty() {
     // TODO fix the expected values in the assertions below
     list.add(77);
-    assertEquals(true, list.isEmpty());
-    assertEquals(0, list.size());
-    assertEquals(0, list.get(0).intValue());
+    assertEquals(false, list.isEmpty());
+    assertEquals(1, list.size());
+    assertEquals(77, list.get(0).intValue());
   }
 
   @Test
@@ -123,11 +124,9 @@ public class TestList {
     list.add(66);
     // TODO using containsAll and List.of (see above),
     // 1) assert that list contains all five different numbers added
-    List secondList = List.of(33,77,44,55,66);
-    assertEquals(true, list.containsAll(secondList));
+    assertEquals(true, list.containsAll(List.of(33,77,44,55,66)));
     // 2) assert that list does not contain all of 11, 22, and 33
-    secondList = List.of(11,22,33);
-    assertEquals(false, list.containsAll(secondList));
+    assertEquals(false, list.containsAll(List.of(11,22,33)));
     //fail("Not yet implemented"); // remove this line when done
   }
 
@@ -159,7 +158,7 @@ public class TestList {
     // TODO in a single statement using removeAll and List.of,
     // remove items from the list to make the following assertions pass
     // (without touching the assertions themselves)
-    list.removeAll(List.of(33,44,55,66););
+    list.removeAll(List.of(33,44,55,66));
     assertEquals(3, list.size());
     assertEquals(List.of(77, 77, 77), list);
   }
